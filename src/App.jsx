@@ -5,7 +5,7 @@ import TodoList from './Components/TodoList';
 
 function App() {
   const [todos,setTodos] = useState([]);
-  const [todoValue, setTodoValue] = useState('')
+  const [todoValue, setTodoValue] = useState([]);
 
   function persistData(newList){
     localStorage.setItem('todos',  JSON.stringify({ todos: newList }))
@@ -29,13 +29,17 @@ function handleEditTodo(index){
 
 }
 
-useEffect(()=>{
-  if (!localStorage){return}
-  let localTodos=localStorage.getItem('todos')
-  if (!localStorage){return}
-  localTodos=JSON.parse(localTodos).todos
-  setTodos(localTodos)
-},[]);
+useEffect(() => {
+  if (!localStorage) return;
+  const localTodos = localStorage.getItem('todos');
+  if (!localTodos) return; // <--- Add this check
+  const parsedTodos = JSON.parse(localTodos);
+  if (!parsedTodos ||!parsedTodos.todos) return; // <--- Add this check
+  setTodos(parsedTodos.todos);
+}, []);
+
+
+
   return (
 <>
 <TodoInput handleAddTodos={handleAddTodos} setTodoValue={setTodoValue} todoValue={todoValue}/>
