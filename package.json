@@ -24,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/Mazhar-7/TodoList/"
   },
-  "homepage": "https://github.com/Mazhar-7/TodoList#readme",
+  "homepage": "https://github.com/Mazhar-7/TodoList/",
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
